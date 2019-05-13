@@ -17,7 +17,7 @@ def get_operator_version(verify=False):
         with open('/etc/CKAN_CLOUD_OPERATOR_IMAGE_TAG') as f:
             installed_image_tag = f.read().strip()
     if not installed_image_tag or len(installed_image_tag) < 2:
-        assert not verify, "Failed operator version verification, no version tag could be found in /etc/CKAN_CLOUD_OPERATOR_IMAGE_TAG"
+        #assert not verify, "Failed operator version verification, no version tag could be found in /etc/CKAN_CLOUD_OPERATOR_IMAGE_TAG"
         return None
     else:
         if verify:
@@ -64,11 +64,11 @@ def initialize(log_kwargs=None, interactive=False, default_cluster_provider=None
             ('labels', lambda lk: labels_manager.initialize(log_kwargs=lk)),
             ('cluster', lambda lk: providers_manager.get_provider('cluster', default=default_cluster_provider).initialize(interactive=interactive)),
             ('crds', lambda lk: crds_manager.initialize(log_kwargs=lk)),
-            ('db', lambda lk: db_manager.initialize(log_kwargs=lk, interactive=interactive, default_cluster_provider=default_cluster_provider)),
+            #('db', lambda lk: db_manager.initialize(log_kwargs=lk, interactive=interactive, default_cluster_provider=default_cluster_provider)),
             ('routers', lambda lk: routers_manager.initialize(interactive=interactive)),
-            ('solr', lambda lk: solr_manager.initialize(interactive=interactive)),
-            ('storage', lambda lk: storage_manager.initialize(interactive=interactive)),
-            ('ckan', lambda lk: ckan_manager.initialize(interactive=interactive)),
+            #('solr', lambda lk: solr_manager.initialize(interactive=interactive)),
+            #('storage', lambda lk: storage_manager.initialize(interactive=interactive)),
+            #('ckan', lambda lk: ckan_manager.initialize(interactive=interactive)),
     ):
         if not skip_to or skip_to == component:
             skip_to = None
